@@ -12,7 +12,7 @@ on:
       environment:
         description: 'Environment to deploy to'
         required: true
-        default: 'dev'
+        default: 'stg'
         type: choice
         options:
           - dev
@@ -56,6 +56,9 @@ jobs:
 
       # - name: Build application
       #   run: echo "Building application..."
+
+      - name: x1
+        run: echo "${{ needs.determine-environment.result.environment }}"
 
       - name: Deploy application
         run: echo "${{ needs.determine-environment.outputs.environment }}"
