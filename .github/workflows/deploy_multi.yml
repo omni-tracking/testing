@@ -3,9 +3,8 @@ name: Deploy_Multi_Environment
 on:
   push:
     branches:
-      # - dev
-      # - stg
-      # - prod
+      - dev
+      - stg
       - main
       # - do_nothing
   workflow_dispatch:
@@ -17,8 +16,8 @@ on:
         type: choice
         options:
           - dev
-          - staging
-          - production
+          - stg
+          - main
 
 jobs:
   determine-environment:
