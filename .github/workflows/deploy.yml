@@ -8,12 +8,12 @@ on:
       - do_nothing
 
 jobs:
-  # test-lint:
-  #   uses: ./.github/workflows/test-and-lint.yml
-  #   name: Test and Lint
-  #   secrets:
-  #     DOCKERHUB_USER: ${{ vars.DOCKERHUB_USER }}
-  #     DOCKERHUB_TOKEN: ${{ secrets.DOCKERHUB_TOKEN }}
+  test-lint:
+    uses: ./.github/workflows/test-and-lint.yml
+    name: Test and Lint
+    secrets:
+      DOCKERHUB_USER: ${{ vars.DOCKERHUB_USER }}
+      DOCKERHUB_TOKEN: ${{ secrets.DOCKERHUB_TOKEN }}
 
   # deploy:
   #   name: Deploy
