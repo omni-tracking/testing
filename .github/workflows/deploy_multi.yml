@@ -10,9 +10,9 @@ on:
   workflow_dispatch:
     inputs:
       environment:
-        description: "Environment to deploy to"
+        description: 'Environment to deploy to'
         required: true
-        default: "dev"
+        default: 'dev'
         type: choice
         options:
           - dev
@@ -51,11 +51,14 @@ jobs:
           echo "Deploying to ${{ needs.determine-environment.outputs.environment }} environment"
           echo "API_KEY=${{ secrets[format('{0}_API_KEY', needs.determine-environment.outputs.environment)] }}" >> $GITHUB_ENV
 
-      - name: Install dependencies
-        run: echo "Installing dependencies..."
+      # - name: Install dependencies
+      #   run: echo "Installing dependencies..."
 
-      - name: Build application
-        run: echo "Building application..."
+      # - name: Build application
+      #   run: echo "Building application..."
 
       - name: Deploy application
-        run: echo "Deploying application to ${{ needs.determine-environment.outputs.environment }} environment"
+        run: echo "${{ needs.determine-environment.outputs.environment }}"
+
+      # - name: Deploy application
+      #   run: echo "Deploying application to ${{ needs.determine-environment.outputs.environment }} environment"
