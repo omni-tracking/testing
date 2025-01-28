@@ -4,8 +4,8 @@ on:
   push:
     branches:
       # - main
-      - prod
-      # - do_nothing
+      # - prod
+      - do_nothing
 
 jobs:
   # test-lint:

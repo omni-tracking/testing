@@ -4,7 +4,8 @@ on:
   push:
     branches:
       # - dev
-      # - staging
+      # - stg
+      # - prod
       - main
       # - do_nothing
   workflow_dispatch:
