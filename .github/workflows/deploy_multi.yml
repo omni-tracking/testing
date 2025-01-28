@@ -49,7 +49,7 @@ jobs:
       - name: Set up environment variables
         run: |
           echo "Deploying to ${{ needs.determine-environment.outputs.environment }} environment"
-          echo "${{ vars.DEV_VAR }}"
+          echo ">> ${{ vars.DEV_VAR }}"
           # echo "API_KEY=${{ secrets[format('{0}_API_KEY', needs.determine-environment.outputs.environment)] }}" >> $GITHUB_ENV
 
       # - name: Install dependencies
