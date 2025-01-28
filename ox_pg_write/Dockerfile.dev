@@ -1,0 +1,11 @@
+FROM postgres:16.6-alpine3.21
+
+WORKDIR /app
+
+COPY init.sql /docker-entrypoint-initdb.d/init.sql
+
+EXPOSE 5432
+
+ENV POSTGRES_USER=postgres
+ENV POSTGRES_PASSWORD=postgres
+ENV POSTGRES_DB=ot

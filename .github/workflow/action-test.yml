@@ -1,0 +1,61 @@
+name: Multi-Environment Deployment
+
+on:
+  push:
+    branches:
+      # - dev
+      # - staging
+      # - main
+      - do_nothing
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: "Environment to deploy to"
+        required: true
+        default: "dev"
+        type: choice
+        options:
+          - dev
+          - staging
+          - production
+
+jobs:
+  determine-environment:
+    runs-on: ubuntu-latest
+    outputs:
+      environment: ${{ steps.env.outputs.environment }}
+    steps:
+      - name: Determine Environment
+        id: env
+        run: |
+          if [ "${{ github.ref }}" == "refs/heads/dev" ]; then
+            echo "environment=dev" >> $GITHUB_OUTPUT
+          elif [ "${{ github.ref }}" == "refs/heads/staging" ]; then
+            echo "environment=staging" >> $GITHUB_OUTPUT
+          elif [ "${{ github.ref }}" == "refs/heads/main" ]; then
+            echo "environment=production" >> $GITHUB_OUTPUT
+          else
+            echo "environment=${{ inputs.environment }}" >> $GITHUB_OUTPUT
+          fi
+
+  deploy:
+    needs: determine-environment
+    runs-on: ubuntu-latest
+    environment: ${{ needs.determine-environment.outputs.environment }}
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up environment variables
+        run: |
+          echo "Deploying to ${{ needs.determine-environment.outputs.environment }} environment"
+          echo "API_KEY=${{ secrets[format('{0}_API_KEY', needs.determine-environment.outputs.environment)] }}" >> $GITHUB_ENV
+
+      - name: Install dependencies
+        run: echo "Installing dependencies..."
+
+      - name: Build application
+        run: echo "Building application..."
+
+      - name: Deploy application
+        run: echo "Deploying application to ${{ needs.determine-environment.outputs.environment }} environment"
