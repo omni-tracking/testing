@@ -3,9 +3,9 @@ name: Multi-Environment Deployment
 on:
   push:
     branches:
-      - dev
+      # - dev
       # - staging
-      # - main
+      - main
       # - do_nothing
   workflow_dispatch:
     inputs:
