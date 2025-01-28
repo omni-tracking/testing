@@ -1,4 +1,4 @@
-name: Multi-Environment-Deployment
+name: Multi_Environment_Deployment
 
 on:
   push:
