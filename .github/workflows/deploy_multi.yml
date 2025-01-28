@@ -17,7 +17,7 @@ on:
         options:
           - dev
           - stg
-          - main
+          - prod
 
 jobs:
   determine-environment:
@@ -30,10 +30,10 @@ jobs:
         run: |
           if [ "${{ github.ref }}" == "refs/heads/dev" ]; then
             echo "environment=dev" >> $GITHUB_OUTPUT
-          elif [ "${{ github.ref }}" == "refs/heads/staging" ]; then
-            echo "environment=staging" >> $GITHUB_OUTPUT
+          elif [ "${{ github.ref }}" == "refs/heads/stg" ]; then
+            echo "environment=stg" >> $GITHUB_OUTPUT
           elif [ "${{ github.ref }}" == "refs/heads/main" ]; then
-            echo "environment=production" >> $GITHUB_OUTPUT
+            echo "environment=prod" >> $GITHUB_OUTPUT
           else
             echo "environment=${{ inputs.environment }}" >> $GITHUB_OUTPUT
           fi
