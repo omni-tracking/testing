@@ -3,10 +3,10 @@ name: Multi-Environment Deployment
 on:
   push:
     branches:
-      # - dev
+      - dev
       # - staging
       # - main
-      - do_nothing
+      # - do_nothing
   workflow_dispatch:
     inputs:
       environment:
