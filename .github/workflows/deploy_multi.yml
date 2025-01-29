@@ -49,17 +49,9 @@ jobs:
       - name: Set up environment variables
         run: |
           echo "Deploying to ${{ needs.determine-environment.outputs.environment }} environment"
-          echo ">> ${{ vars[format('{0}_VAR', needs.determine-environment.outputs.environment)] }}"
+          echo ">> ${{ vars[format('DEV_VAR', needs.determine-environment.outputs.environment)] }}"
+          # echo ">> ${{ vars[format('{0}_VAR', needs.determine-environment.outputs.environment)] }}"
           # echo "API_KEY=${{ secrets[format('{0}_API_KEY', needs.determine-environment.outputs.environment)] }}" >> $GITHUB_ENV
-
-      # - name: Install dependencies
-      #   run: echo "Installing dependencies..."
-
-      # - name: Build application
-      #   run: echo "Building application..."
-
-      - name: x1
-        run: echo "${{ needs.determine-environment.result.environment }}"
 
       - name: Deploy application
         run: echo "${{ needs.determine-environment.outputs.environment }}"
