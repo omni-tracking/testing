@@ -50,7 +50,7 @@ jobs:
         run: |
           echo "Deploying to ${{ needs.determine-environment.outputs.environment }} environment"
           # echo ">> ${{ env.MY_VAR }}"
-          echo ${{ github }}
+          echo ${{ toJson(github) }}
           # echo ">> ${{ vars[format('{0}_VAR', needs.determine-environment.outputs.environment)] }}"
           # echo "API_KEY=${{ secrets[format('{0}_API_KEY', needs.determine-environment.outputs.environment)] }}" >> $GITHUB_ENV
 
